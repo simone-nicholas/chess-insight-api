@@ -38,6 +38,18 @@ public class PlayerService {
         Integer blitzRd = null;
         Integer blitzProg = null;
 
+        // Rapid
+        Integer rapidGame = null;
+        Integer rapidRating = null;
+        Integer rapidRd = null;
+        Integer rapidProg = null;
+
+        // Classical
+        Integer classicalGame = null;
+        Integer classicalRating = null;
+        Integer classicalRd = null;
+        Integer classicalProg = null;
+
         if (response.profile() != null) {
             // Profile
             realName = response.profile().realName();
@@ -62,6 +74,22 @@ public class PlayerService {
                 blitzRd = response.perfs().blitz().rd();
                 blitzProg = response.perfs().blitz().prog();
             }
+
+            // Rapid
+            if (response.perfs().rapid() != null) {
+                rapidGame = response.perfs().rapid().games();
+                rapidRating = response.perfs().rapid().rating();
+                rapidRd = response.perfs().rapid().rd();
+                rapidProg = response.perfs().rapid().prog();
+            }
+
+            // Classical
+            if (response.perfs().classical() != null) {
+                classicalGame = response.perfs().classical().games();
+                classicalRating = response.perfs().classical().rating();
+                classicalRd = response.perfs().classical().rd();
+                classicalProg = response.perfs().classical().prog();
+            }
         }
 
         Instant memberSince = response.createdAt() != null
@@ -82,6 +110,20 @@ public class PlayerService {
                 blitzProg
         );
 
+        GamePerf rapidObject = new GamePerf(
+                rapidGame,
+                rapidRating,
+                rapidRd,
+                rapidProg
+        );
+
+        GamePerf classicalObject = new GamePerf(
+                classicalGame,
+                classicalRating,
+                classicalRd,
+                classicalProg
+        );
+
         return new PlayerProfileDto(
                 // Profile
                 response.username(),
@@ -95,7 +137,13 @@ public class PlayerService {
                 bulletObject,
 
                 // Blitz
-                blitzObject
+                blitzObject,
+
+                // Rapid
+                rapidObject,
+
+                // Classical
+                classicalObject
         );
     }
 }

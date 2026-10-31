@@ -15,6 +15,12 @@ public record PlayerProfileDto(
         GamePerf bulletObject,
 
         // Blitz
-        GamePerf blitzObject
+        GamePerf blitzObject,
+
+        // Rapid
+        GamePerf rapidObject,
+
+        // Classical
+        GamePerf cassicalObjects
 ) {
 }

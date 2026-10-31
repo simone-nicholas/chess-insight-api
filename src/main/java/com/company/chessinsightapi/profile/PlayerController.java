@@ -33,11 +33,17 @@ public class PlayerController {
             return playerService.getPlayerProfile(username).blitzObject();
         } else if ("bullet".equalsIgnoreCase(type)){
             return playerService.getPlayerProfile(username).bulletObject();
+        } else if ("rapid".equalsIgnoreCase((type))) {
+            return playerService.getPlayerProfile(username).rapidObject();
+        } else if ("classical".equalsIgnoreCase(type)) {
+            return playerService.getPlayerProfile(username).cassicalObjects();
         }
 
         return Map.of(
+                "bullet", profile.bulletObject(),
                 "blitz", profile.blitzObject(),
-                "bullet", profile.bulletObject()
+                "rapid", profile.rapidObject(),
+                "classical", profile.cassicalObjects()
         );
     }
 }
